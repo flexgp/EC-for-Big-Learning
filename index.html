@@ -90,25 +90,23 @@
 </ol><p>For more detailed information yo can contact us by :
 <a href="mailto:iarnaldo@mit.edu">email</a></p>
 
-<h1>
-<a name="classification-by-gp-function-banknote-authentication" class="anchor" href="#classification-by-gp-function-banknote-authentication"><span class="octicon octicon-link"></span></a>
-<a name="tutorial" href="#tutorial"></a>Classification
- by GP function: Banknote Authentication</h1>
+<h3>
+<a name="example-classification-by-gp-function" class="anchor" href="#example-classification-by-gp-function"><span class="octicon octicon-link"></span></a>Example: Classification by GP function</h3>
 
-<p>We reuse the <a href="http://archive.ics.uci.edu/ml/datasets/banknote+authentication">Banknote 
- Authentication dataset</a> used above to demonstrate the GP function classifier. We report the preprocessing steps 
- necessary to format the data:</p>
- 
+<p>In this section we provide an example of a learner integrated in FCUBE, namely our GPFunction classifier  learning algorithm based on Genetic Programming. Please download the GPFunction from here.</p>
 
-<pre><code>$ sort --random-sort data_banknote_authentication.csv &gt; banknoteShuffled.csv
-$ head -n905 banknoteShuffled.csv &gt; banknoteTrain.csv
-$ tail -n466 banknoteShuffled.csv &gt; banknoteTest.csv
+<p>We use the split higgs_01.csv released to prepare the competition to demonstrate the interfaces of the GPFunction classifier. The Higgs dataset is composed of 28 features and a binary label 0 or 1. You will realize that the released split contains only 5 features. Since FCUBE will automatically sample exemplars and features for you, your learner should be able to work with any number of features (so avoid hard-coded values!).</p>
+
+<p>Step 1: First we prepare a properties file in Java syntax for the parameters specific to GP Function classifier:</p>
+
+<pre><code>$ nano params.properties
+
+external_threads=4
+false_negative_weight=0.5
+pop_size=500
 </code></pre>
 
-<p></p><p>In this example, we employ the same data to train the classifiers and to set the decisions thresholds. We run the GP
- function learner with the following command:</p>
-
-<pre><code>$ java -jar gpfunction.jar -train path_to_banknoteTrain -cv path_to_banknoteTrain -minutes 20
+<pre><code>$ java -jar gpfunction.jar -train split_01.csv -minutes 10 -properties params.properties
 </code></pre>
 
 <p>We now show the solutions stored in the pareto.txt file. The file contains nondominated models and their respective
