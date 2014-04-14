@@ -91,16 +91,34 @@
 <a href="mailto:iarnaldo@mit.edu">email</a></p>
 
 <h3>
+<a name="the-datasets" class="anchor" href="#the-datasets"><span class="octicon octicon-link"></span></a>The datasets</h3>
+
+<p>In this edition of the workshop, we will target binary classification problems. Algorithms submitted to the competition must read data in CSV format where the last column contains the label (0 or 1). </p>
+
+<h2>
+<a name="higgs-dataset" class="anchor" href="#higgs-dataset"><span class="octicon octicon-link"></span></a>HIGGS dataset:</h2>
+
+<p>Please check the splits released to tune your learner in the release page.
+The datasets are released in two versions:
+1. splits_headers_01.csv: the first line of the file contains the name and type of the features (integer, float, or nominal). 
+2. splits_noheaders_01.csv</p>
+
+<p>We provide an example of header of a dataset composed of 7 features plus the label column:</p>
+
+<pre><code>i_X1,f_X2,f_X3,f_X4,f_X5,n_X6,n_X7,label</code></pre>
+
+<p>In the example variable X1 is integer. X2, X3, X4, and X5 are floats. Finally X6 are X7 are nominal variables.</p>
+
+<h3>
 <a name="example-classification-by-gp-function" class="anchor" href="#example-classification-by-gp-function"><span class="octicon octicon-link"></span></a>Example: Classification by GP function</h3>
 
 <p>In this section we provide an example of a learner integrated in FCUBE, namely our GPFunction classifier  learning algorithm based on Genetic Programming. Please download the GPFunction from here.</p>
 
-<p>We use the split higgs_01.csv released to prepare the competition to demonstrate the interfaces of the GPFunction classifier. The Higgs dataset is composed of 28 features and a binary label 0 or 1. You will realize that the released split contains only 5 features. Since FCUBE will automatically sample exemplars and features for you, your learner should be able to work with any number of features (so avoid hard-coded values!).</p>
+<p>We use the split higgs_01.csv released to prepare the competition to demonstrate the interfaces of the GPFunction classifier. The Higgs dataset is composed of 28 features and a binary label 0 or 1. Note that in this case the 28 features are floats. You will realize that the released split contains only 5 features. Since FCUBE will automatically sample exemplars and features for you, your learner should be able to work with any number of features (so avoid hard-coded values!).</p>
 
 <p>Step 1: First we prepare a properties file in Java syntax for the parameters specific to GP Function classifier:</p>
 
 <pre><code>$ nano params.properties
-
 external_threads=4
 false_negative_weight=0.5
 pop_size=500
@@ -112,24 +130,6 @@ pop_size=500
 <p>We now show the solutions stored in the pareto.txt file. The file contains nondominated models and their respective
  AUC when tested on the training set, the AUC when tested on the validation set, and the decision theshold. Note that
  in this case, the same data is used for training and validation and thus the same AUC values are reported.</p>
-
-<pre><code>$ less pareto.txt
-X3,0.5377,0.5377,0.6
-(square X3),0.5893,0.5893,0.1
-(- X4 X1),0.8946,0.8946,0.6
-(- (- X4 X1) X1),0.9307,0.9307,0.6
-(- (sqrt (exp X4)) X1),0.9322,0.9322,0.5
-(- (- X4 X1) (+ X3 X2)),0.9373,0.9373,0.7
-(- (- (cos X3) X1) (+ X3 X2)),0.9985,0.9985,0.6
-(- (- (- (cube (cos (exp X3))) X1) X1) (+ X3 X2)),0.9985,0.9985,0.6
-(- (- (- (exp (exp (- (sin X1) (exp (- X3 X4))))) X1) (+ X3 X2)) X1),0.9996,0.9996,0.6
-(- (- (- (exp (- (sin X1) (exp X3))) X1) X1) (+ X3 X2)),0.9994,0.9994,0.6
-(- (- (- (exp (- (sin X1) (exp (- X3 X2)))) X1) X1) (+ X3 X2)),0.9995,0.9995,0.6
-(- (sin X4) X1),0.9179,0.9179,0.4
-(- (- (- (exp (exp (- (sin X1) (exp (- X3 (- (sqrt (exp X4)) X1)))))) X1) (+ X3 X2)) X1),0.9998,0.9998,0.5
-(- (- (- (exp (exp (- (sin X1) (exp (- X3 (- (- (- (exp X4) X1) X1) (- (- (exp (- (sin X1) (exp X3))) X1) X1))))))) X1) (+ X3 X2)) X1),1.0,1.0,0.6
-(- (- (- (exp (- (- (sin X1) (exp (- X3 (mydivide (sin X1) (square X3))))) (+ X3 X2))) X1) X1) (+ X3 X2)),0.9999,0.9999,0.6
-</code></pre>
 
 <p>The obtained models are then tested on unseen data:</p>
 
