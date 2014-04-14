@@ -31,8 +31,8 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="big-data-learning" class="anchor" href="#big-data-learning"><span class="octicon octicon-link"></span></a>Big Data Learning</h3>
+        <h1>
+<a name="big-data-learning" class="anchor" href="#big-data-learning"><span class="octicon octicon-link"></span></a>Big Data Learning</h1>
 
 <p>Have you ever wanted to run your EC algorithm in the cloud? Discouraged by the complexity of EC2? We will deploy your EC algorithm on the cloud for you with our FCUBE framework!</p>
 
@@ -51,6 +51,33 @@
 <li>FCUBE executes your algorithm with the competition training data</li>
 <li>FCUBE retrieves the solutions from the cloud nodes, computes the testing predictions, and returns them to you.</li>
 <li>FCUBE also filters and fuses the predictions using different methods. Everyone receives their fused results and everyone contributes to a collaborative fused solution among all contributors.</li>
+</ul><h2>
+<a name="learner-training-interface" class="anchor" href="#learner-training-interface"><span class="octicon octicon-link"></span></a>Learner Training interface</h2>
+
+<p>Inputs:</p>
+
+<ul>
+<li>a path to a CSV file</li>
+<li>learning time deadline</li>
+<li>Properties File with Java syntax (for your extra parameters)</li>
+</ul><p>Outputs:</p>
+
+<ul>
+<li>a model stored in a single file on disk</li>
+</ul><h2>
+<a name="learner-predict-interface" class="anchor" href="#learner-predict-interface"><span class="octicon octicon-link"></span></a>Learner Predict interface</h2>
+
+<h1>
+<a name="inputs" class="anchor" href="#inputs"><span class="octicon octicon-link"></span></a>Inputs:</h1>
+
+<ul>
+<li>path to a CSV file</li>
+<li>path to where the model is stored</li>
+<li>path to where the predictions will be stored
+#Outputs:</li>
+<li>predictions in CSV file
+<img src="images/learnerbbpredict.png" alt="Predict Interface">
+</li>
 </ul><p>For more detailed information yo can contact us by :
 <a href="mailto:iarnaldo@mit.edu">email</a></p>
 
