@@ -1,41 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>EC for Big Learning by flexgp</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="EC for Big Learning : Join us in fusing our EC classifiers" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>EC for Big Learning</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">EC for Big Learning</h1>
-        <p class="header">Join us in fusing our EC classifiers</p>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/flexgp/EC-for-Big-Learning/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/flexgp/EC-for-Big-Learning/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/flexgp/EC-for-Big-Learning">View On GitHub</a></li>
-        </ul>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/flexgp/EC-for-Big-Learning">View on GitHub</a>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/flexgp">flexgp</a></p>
+          <h1 id="project_title">EC for Big Learning</h1>
+          <h2 id="project_tagline">Join us in fusing our EC classifiers</h2>
 
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/flexgp/EC-for-Big-Learning/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/flexgp/EC-for-Big-Learning/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-      </header>
-      <section>
-        <h3>
-<a name="big-data-learning" class="anchor" href="#big-data-learning"><span class="octicon octicon-link"></span></a>Big Data Learning</h3>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="big-data-learning" class="anchor" href="#big-data-learning"><span class="octicon octicon-link"></span></a>Big Data Learning</h1>
 
 <p>Have you ever wanted to run your EC algorithm in the cloud? Discouraged by the complexity of EC2? We will deploy your EC algorithm on the cloud for you with our FCUBE framework!</p>
 
-<p>FCUBE supports a Bring Your Own Learner (BYOL) model: it deploys your EC algorithm to hundreds of machines and does all the data management for you. No scripts, no launch hassles, no tedious result collection. FCUBE is (EC) deployment as a service.</p>
+<p>FCUBE supports a Bring Your Own Learner (BYOL) model: it deploys your EC algorithm to hundreds of machines and does all the data management for you. No scripts, no launch hassles, no tedious result collection. FCUBE is (EC) deployment as a service:</p>
+
+<p><img src="images/f3.png" alt="FCUBE"></p>
 
 <p>For this competition, our goal is to unite the developers of interesting EC classifier algorithms. We seek an experienced informed discussion on the various approaches and techniques without being distracted by one problem at hand. Therefore, we have set up the following format:</p>
 
@@ -50,10 +53,97 @@
 <li>FCUBE executes your algorithm with the competition training data</li>
 <li>FCUBE retrieves the solutions from the cloud nodes, computes the testing predictions, and returns them to you.</li>
 <li>FCUBE also filters and fuses the predictions using different methods. Everyone receives their fused results and everyone contributes to a collaborative fused solution among all contributors.</li>
-</ul><p>For more detailed information check the workshop website:
-<a href="http://flexgp.csail.mit.edu/GECCO-big-data-workshop/">http://flexgp.csail.mit.edu/GECCO-big-data-workshop/</a>
-or contact us:
-mailto:<a href="mailto:iarnaldo@mit.edu">iarnaldo@mit.edu</a></p>
+</ul><h2>
+<a name="learner-training-interface" class="anchor" href="#learner-training-interface"><span class="octicon octicon-link"></span></a>Learner Training interface</h2>
+
+<h3>
+<a name="inputs" class="anchor" href="#inputs"><span class="octicon octicon-link"></span></a>Inputs:</h3>
+
+<ol>
+<li>a path to a CSV file</li>
+<li>learning time deadline</li>
+<li>Properties File with Java syntax (for your extra parameters)</li>
+</ol><h3>
+<a name="outputs" class="anchor" href="#outputs"><span class="octicon octicon-link"></span></a>Outputs:</h3>
+
+<ol>
+<li>a model stored in a single file on disk
+<img src="images/learnerbbtrain.png" alt="Predict Interface">
+</li>
+</ol><h2>
+<a name="learner-predict-interface" class="anchor" href="#learner-predict-interface"><span class="octicon octicon-link"></span></a>Learner Predict interface</h2>
+
+<h3>
+<a name="inputs-1" class="anchor" href="#inputs-1"><span class="octicon octicon-link"></span></a>Inputs:</h3>
+
+<ol>
+<li>path to a CSV file</li>
+<li>path to where the model is stored</li>
+<li>path to where the predictions will be stored</li>
+</ol><h3>
+<a name="outputs-1" class="anchor" href="#outputs-1"><span class="octicon octicon-link"></span></a>Outputs:</h3>
+
+<ol>
+<li>predictions in CSV file
+<img src="images/learnerbbpredict.png" alt="Predict Interface">
+</li>
+</ol><h3>
+<a name="the-datasets" class="anchor" href="#the-datasets"><span class="octicon octicon-link"></span></a>The datasets</h3>
+
+<p>In this edition of the workshop, we will target binary classification problems. Algorithms submitted to the competition must read data in CSV format where the last column contains the label (0 or 1). </p>
+
+<h2>
+<a name="higgs-dataset" class="anchor" href="#higgs-dataset"><span class="octicon octicon-link"></span></a>HIGGS dataset:</h2>
+
+<p>Please check the splits released to tune your learner in the release page.
+The datasets are released in two versions:
+1. splits_headers_01.csv: the first line of the file contains the name and type of the features (integer, float, or nominal). 
+2. splits_noheaders_01.csv</p>
+
+<p>We provide an example of header of a dataset composed of 7 features plus the label column:</p>
+
+<pre><code>i_X1,f_X2,f_X3,f_X4,f_X5,n_X6,n_X7,label</code></pre>
+
+<p>In the example variable X1 is integer. X2, X3, X4, and X5 are floats. Finally X6 are X7 are nominal variables.</p>
+
+<h3>
+<a name="example-classification-by-gp-function" class="anchor" href="#example-classification-by-gp-function"><span class="octicon octicon-link"></span></a>Example: Classification by GP function</h3>
+
+<p>In this section we provide an example of a learner integrated in FCUBE, namely our GPFunction classifier  learning algorithm based on Genetic Programming. Please download the GPFunction from here.</p>
+
+<p>We use the split higgs_01.csv released to prepare the competition to demonstrate the interfaces of the GPFunction classifier. The Higgs dataset is composed of 28 features and a binary label 0 or 1. Note that in this case the 28 features are floats. You will realize that the released split contains only 5 features. Since FCUBE will automatically sample exemplars and features for you, your learner should be able to work with any number of features (so avoid hard-coded values!).</p>
+
+<p>Step 1: First we prepare a properties file in Java syntax for the parameters specific to GP Function classifier:</p>
+
+<pre><code>$ nano params.properties
+external_threads=4
+false_negative_weight=0.5
+pop_size=500
+</code></pre>
+
+<pre><code>$ java -jar gpfunction.jar -train split_01.csv -minutes 10 -properties params.properties
+</code></pre>
+
+<p>We now show the solutions stored in the pareto.txt file. The file contains nondominated models and their respective
+ AUC when tested on the training set, the AUC when tested on the validation set, and the decision theshold. Note that
+ in this case, the same data is used for training and validation and thus the same AUC values are reported.</p>
+
+<p>The obtained models are then tested on unseen data:</p>
+
+<pre><code>$ java -jar gpfunction.jar -test path_to_banknoteTest
+</code></pre>
+
+<p>We report the results for the model presenting the higher Area under the ROC curve with respect to the validation set:</p>
+
+<pre><code>
+GP FUNCTION: (- (- (- (exp (exp (- (sin X1) (exp (- X3 (- (- (- (exp X4) X1) X1) (- (- (exp (- (sin X1) (exp X3))) X1) X1))))))) X1) (+ X3 X2)) X1)
+ACCURACY: 0.9892703862660944
+PRECISION: 0.9731182795698925
+RECALL: 1.0
+F-SCORE: 0.9863760217983651
+FALSE POSITIVE RATE: 0.017543859649122806
+FALSE NEGATIVE RATE: 0.0
+</code></pre>
 
 <pre><code>$ cd your_repo_root/repo_name
 $ git fetch origin
@@ -73,20 +163,27 @@ $ git checkout gh-pages
 <p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
 
 <h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
 <a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>Having with the adaptation of your learner? Check out the provided examples and feel free to contact us at <a href="mailto:iarnaldo@mit.edu">email</a> and we’ll try to help you sort it out.</p>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>This competition is organized by the Any-Scale Learning for All (ALFA) group at MIT.
+<img src="images/ALFA-logo-lousy.png" alt="ALFA"><img src="images/mit-logo.png" alt="MIT"></p>
       </section>
-      <footer>
-        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">EC for Big Learning maintained by <a href="https://github.com/flexgp">flexgp</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+
+    
+
   </body>
 </html>
