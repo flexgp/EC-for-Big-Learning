@@ -54,6 +54,66 @@
 </ul><p>For more detailed information yo can contact us by :
 <a href="mailto:iarnaldo@mit.edu">email</a></p>
 
+<h1>
+<a name="classification-by-gp-function-banknote-authentication" class="anchor" href="#classification-by-gp-function-banknote-authentication"><span class="octicon octicon-link"></span></a>
+<a name="tutorial" href="#tutorial"></a>Classification
+ by GP function: Banknote Authentication</h1>
+
+<p>We reuse the <a href="http://archive.ics.uci.edu/ml/datasets/banknote+authentication">Banknote 
+ Authentication dataset</a> used above to demonstrate the GP function classifier. We report the preprocessing steps 
+ necessary to format the data:</p>
+ 
+
+<pre><code>$ sort --random-sort data_banknote_authentication.csv &gt; banknoteShuffled.csv
+$ head -n905 banknoteShuffled.csv &gt; banknoteTrain.csv
+$ tail -n466 banknoteShuffled.csv &gt; banknoteTest.csv
+</code></pre>
+
+<p></p><p>In this example, we employ the same data to train the classifiers and to set the decisions thresholds. We run the GP
+ function learner with the following command:</p>
+
+<pre><code>$ java -jar gpfunction.jar -train path_to_banknoteTrain -cv path_to_banknoteTrain -minutes 20
+</code></pre>
+
+<p>We now show the solutions stored in the pareto.txt file. The file contains nondominated models and their respective
+ AUC when tested on the training set, the AUC when tested on the validation set, and the decision theshold. Note that
+ in this case, the same data is used for training and validation and thus the same AUC values are reported.</p>
+
+<pre><code>$ less pareto.txt
+X3,0.5377,0.5377,0.6
+(square X3),0.5893,0.5893,0.1
+(- X4 X1),0.8946,0.8946,0.6
+(- (- X4 X1) X1),0.9307,0.9307,0.6
+(- (sqrt (exp X4)) X1),0.9322,0.9322,0.5
+(- (- X4 X1) (+ X3 X2)),0.9373,0.9373,0.7
+(- (- (cos X3) X1) (+ X3 X2)),0.9985,0.9985,0.6
+(- (- (- (cube (cos (exp X3))) X1) X1) (+ X3 X2)),0.9985,0.9985,0.6
+(- (- (- (exp (exp (- (sin X1) (exp (- X3 X4))))) X1) (+ X3 X2)) X1),0.9996,0.9996,0.6
+(- (- (- (exp (- (sin X1) (exp X3))) X1) X1) (+ X3 X2)),0.9994,0.9994,0.6
+(- (- (- (exp (- (sin X1) (exp (- X3 X2)))) X1) X1) (+ X3 X2)),0.9995,0.9995,0.6
+(- (sin X4) X1),0.9179,0.9179,0.4
+(- (- (- (exp (exp (- (sin X1) (exp (- X3 (- (sqrt (exp X4)) X1)))))) X1) (+ X3 X2)) X1),0.9998,0.9998,0.5
+(- (- (- (exp (exp (- (sin X1) (exp (- X3 (- (- (- (exp X4) X1) X1) (- (- (exp (- (sin X1) (exp X3))) X1) X1))))))) X1) (+ X3 X2)) X1),1.0,1.0,0.6
+(- (- (- (exp (- (- (sin X1) (exp (- X3 (mydivide (sin X1) (square X3))))) (+ X3 X2))) X1) X1) (+ X3 X2)),0.9999,0.9999,0.6
+</code></pre>
+
+<p>The obtained models are then tested on unseen data:</p>
+
+<pre><code>$ java -jar gpfunction.jar -test path_to_banknoteTest
+</code></pre>
+
+<p>We report the results for the model presenting the higher Area under the ROC curve with respect to the validation set:</p>
+
+<pre><code>
+GP FUNCTION: (- (- (- (exp (exp (- (sin X1) (exp (- X3 (- (- (- (exp X4) X1) X1) (- (- (exp (- (sin X1) (exp X3))) X1) X1))))))) X1) (+ X3 X2)) X1)
+ACCURACY: 0.9892703862660944
+PRECISION: 0.9731182795698925
+RECALL: 1.0
+F-SCORE: 0.9863760217983651
+FALSE POSITIVE RATE: 0.017543859649122806
+FALSE NEGATIVE RATE: 0.0
+</code></pre>
+
 <pre><code>$ cd your_repo_root/repo_name
 $ git fetch origin
 $ git checkout gh-pages
