@@ -61,125 +61,146 @@
 <li>FCUBE executes your algorithm with the competition training data</li>
 <li>FCUBE retrieves the solutions from the cloud nodes, computes the testing predictions, and returns them to you.</li>
 <li>FCUBE also filters and fuses the predictions using different methods. Everyone receives their fused results and everyone contributes to a collaborative fused solution among all contributors.</li>
-</ul><h2>
-<a name="learner-training-interface" class="anchor" href="#learner-training-interface"><span class="octicon octicon-link"></span></a>Learner Training interface</h2>
+</ul><h1>
+<a name="instructions-for-competitors" class="anchor" href="#instructions-for-competitors"><span class="octicon octicon-link"></span></a>Instructions for competitors.</h1>
+
+<p>The competition will be divided in three phases:</p>
+
+<h2>
+<a name="phase-1-bring-your-own-learner" class="anchor" href="#phase-1-bring-your-own-learner"><span class="octicon octicon-link"></span></a>Phase 1: Bring Your Own Learner</h2>
+
+<p>In a first step, participants will need to adapt their learners to be compliant with the two following interfaces:</p>
 
 <h3>
-<a name="inputs" class="anchor" href="#inputs"><span class="octicon octicon-link"></span></a>Inputs:</h3>
+<a name="learner-training-interface" class="anchor" href="#learner-training-interface"><span class="octicon octicon-link"></span></a>Learner Training interface</h3>
+
+<p><img src="images/learnerbbtrain.png" alt="Predict Interface"></p>
+
+<h4>
+<a name="inputs" class="anchor" href="#inputs"><span class="octicon octicon-link"></span></a>Inputs:</h4>
 
 <ol>
 <li>a path to a CSV file</li>
 <li>learning time deadline</li>
 <li>Properties File with Java syntax (for your extra parameters)</li>
-</ol><h3>
-<a name="outputs" class="anchor" href="#outputs"><span class="octicon octicon-link"></span></a>Outputs:</h3>
+</ol><h4>
+<a name="outputs" class="anchor" href="#outputs"><span class="octicon octicon-link"></span></a>Outputs:</h4>
 
 <ol>
-<li>a model stored in a single file on disk
-<img src="images/learnerbbtrain.png" alt="Predict Interface">
-</li>
-</ol><h2>
-<a name="learner-predict-interface" class="anchor" href="#learner-predict-interface"><span class="octicon octicon-link"></span></a>Learner Predict interface</h2>
+<li>a model stored in a single file on disk</li>
+</ol><h3>
+<a name="learner-predict-interface" class="anchor" href="#learner-predict-interface"><span class="octicon octicon-link"></span></a>Learner Predict interface</h3>
 
-<h3>
-<a name="inputs-1" class="anchor" href="#inputs-1"><span class="octicon octicon-link"></span></a>Inputs:</h3>
+<p><img src="images/learnerbbpredict.png" alt="Predict Interface"></p>
+
+<h4>
+<a name="inputs-1" class="anchor" href="#inputs-1"><span class="octicon octicon-link"></span></a>Inputs:</h4>
 
 <ol>
 <li>path to a CSV file</li>
 <li>path to where the model is stored</li>
 <li>path to where the predictions will be stored</li>
-</ol><h3>
-<a name="outputs-1" class="anchor" href="#outputs-1"><span class="octicon octicon-link"></span></a>Outputs:</h3>
+</ol><h4>
+<a name="outputs-1" class="anchor" href="#outputs-1"><span class="octicon octicon-link"></span></a>Outputs:</h4>
 
 <ol>
-<li>predictions in CSV file
-<img src="images/learnerbbpredict.png" alt="Predict Interface">
-</li>
+<li>predictions in CSV file (one label per line)</li>
 </ol><h3>
-<a name="the-datasets" class="anchor" href="#the-datasets"><span class="octicon octicon-link"></span></a>The datasets</h3>
+<a name="the-data-format" class="anchor" href="#the-data-format"><span class="octicon octicon-link"></span></a>The data format</h3>
 
-<p>In this edition of the workshop, we will target binary classification problems. Algorithms submitted to the competition must read data in CSV format where the last column contains the label (0 or 1). </p>
+<p>In this edition of the workshop, we will target binary classification problems. Algorithms submitted to the competition must read data in CSV format where the last column contains the label (0 or 1). For ease of use, we support two csv formats:</p>
+
+<ol>
+<li>csv without header line</li>
+<li>csv with a header line: the first line of the file contains the name and type of the features (integer, float, or nominal). </li>
+</ol><p>Please find below an example of data file with header composed of 5 features plus the label. In the example variable X1 is integer. X2 and X3 are floats. Finally X4 are X5 are nominal variables.</p>
+
+<pre><code>$ head -n 5 example.csv
+i_X1,f_X2,f_X3,n_X4,n_X5,label
+2,0.7879572,1.0466304,blue,c,0.0
+6,0.58576685,0.20243178,yellow,b,0.0
+18,0.7604114,0.8667035,green,a,1.0
+25,0.7485672,1.3335116,blue,b,1.0
+</code></pre>
 
 <h2>
-<a name="higgs-dataset" class="anchor" href="#higgs-dataset"><span class="octicon octicon-link"></span></a>HIGGS dataset:</h2>
+<a name="phase-2-choose-the-deployment-strategy" class="anchor" href="#phase-2-choose-the-deployment-strategy"><span class="octicon octicon-link"></span></a>Phase 2: Choose the deployment strategy:</h2>
 
-<p>Please check the splits released to tune your learner in the release page.
-The datasets are released in two versions:
-1. splits_headers_01.csv: the first line of the file contains the name and type of the features (integer, float, or nominal). 
-2. splits_noheaders_01.csv</p>
+<p>Once we have the final number of participants, each participant will be assigned a budget in Amazon EC2. Then, each participant will be asked to choose a combination of:</p>
 
-<p>We provide an example of header of a dataset composed of 7 features plus the label column:</p>
+<ol>
+<li>EC2 flavor, i.e the virtual machine specs (check EC2 Instance Type Details <a href="https://aws.amazon.com/ec2/instance-types/">here</a>)</li>
+<li>running time per instance</li>
+<li>number of instances</li>
+</ol><p>Participants will also need to decide a set of parameters concerning the data-parallel strategy:</p>
 
-<pre><code>i_X1,f_X2,f_X3,f_X4,f_X5,n_X6,n_X7,label</code></pre>
+<ol>
+<li>% of data sampled per instance</li>
+<li>% of variables/features sampled per instance </li>
+</ol><p>In the last step prior to deployment, participants will have the option to expose a range of possible choices for their learner-specific parameters. This way, it will possible to assign different parameters to the different instances running on the cloud. More details to come on this aspect.</p>
 
-<p>In the example variable X1 is integer. X2, X3, X4, and X5 are floats. Finally X6 are X7 are nominal variables.</p>
+<h2>
+<a name="phase-3-deployment-of-the-learners-and-communication-of-the-results" class="anchor" href="#phase-3-deployment-of-the-learners-and-communication-of-the-results"><span class="octicon octicon-link"></span></a>Phase 3: Deployment of the learners and communication of the results</h2>
+
+<p>In the last phase we will deploy your learners in EC2. We will analyze the predictions of your learner and communicate performance metrics.</p>
+
+<h1>
+<a name="the-datasets" class="anchor" href="#the-datasets"><span class="octicon octicon-link"></span></a>The datasets:</h1>
+
+<p>For each dataset, we will release samples of different sizes. These samples will allow to estimate the running time of the classifier learning algorithms given the size of the data.</p>
 
 <h3>
-<a name="example-classification-by-gp-function" class="anchor" href="#example-classification-by-gp-function"><span class="octicon octicon-link"></span></a>Example: Classification by GP function</h3>
+<a name="higgs-dataset" class="anchor" href="#higgs-dataset"><span class="octicon octicon-link"></span></a>Higgs dataset:</h3>
 
-<p>In this section we provide an example of a learner integrated in FCUBE, namely our GPFunction classifier  learning algorithm based on Genetic Programming. Please download the GPFunction from here.</p>
+<p>Please remain connected for the updates on the datasets used for the competition.</p>
 
-<p>We use the split higgs_01.csv released to prepare the competition to demonstrate the interfaces of the GPFunction classifier. The Higgs dataset is composed of 28 features and a binary label 0 or 1. Note that in this case the 28 features are floats. You will realize that the released split contains only 5 features. Since FCUBE will automatically sample exemplars and features for you, your learner should be able to work with any number of features (so avoid hard-coded values!).</p>
+<h1>
+<a name="example-of-learner-gpfunction" class="anchor" href="#example-of-learner-gpfunction"><span class="octicon octicon-link"></span></a>Example of learner: GPFunction</h1>
 
-<p>Step 1: First we prepare a properties file in Java syntax for the parameters specific to GP Function classifier:</p>
+<p>In this section we provide an example of a learner integrated in FCUBE, namely our GPFunction classifier  learning algorithm based on Genetic Programming. Please download the GPFunction from <a href="https://github.com/flexgp/EC-for-Big-Learning/releases">here</a>.</p>
+
+<p>We use the split higgs_02.csv released to prepare the competition to demonstrate the interfaces of the GPFunction classifier. The Higgs dataset is composed of 28 features and a binary label 0 or 1. Note that in this case the 28 features are floats. You will realize that the released split contains only 5 features. Since FCUBE will automatically sample exemplars and features for you, your learner should be able to work with any number of features (so avoid hard-coded values!).</p>
+
+<h3>
+<a name="step-0-optional-prepare-a-properties-file-in-java-syntax" class="anchor" href="#step-0-optional-prepare-a-properties-file-in-java-syntax"><span class="octicon octicon-link"></span></a>Step 0 (optional): prepare a properties file in Java syntax</h3>
+
+<p>First we prepare a properties file in Java syntax for the parameters specific to GP Function classifier:</p>
 
 <pre><code>$ nano params.properties
+xover_op=operator.SinglePointKozaCrossover
 external_threads=4
 false_negative_weight=0.5
 pop_size=500
 </code></pre>
 
-<pre><code>$ java -jar gpfunction.jar -train split_01.csv -minutes 10 -properties params.properties
+<h3>
+<a name="step-2-execute-the-classifier-learning-algorithm" class="anchor" href="#step-2-execute-the-classifier-learning-algorithm"><span class="octicon octicon-link"></span></a>Step 2: execute the classifier learning algorithm</h3>
+
+<p>The GPFunction learner is executed given a csv file, a time deadline, and a properties file in Java Syntax. In the example below, the GPFunction classifier is invoked with a time deadline of 10 minutes and the properties file shown above.</p>
+
+<pre><code>$ java -jar gpfunction.jar -train split_02.csv -minutes 10 -properties params.properties
 </code></pre>
-
-<p>We now show the solutions stored in the pareto.txt file. The file contains nondominated models and their respective
- AUC when tested on the training set, the AUC when tested on the validation set, and the decision theshold. Note that
- in this case, the same data is used for training and validation and thus the same AUC values are reported.</p>
-
-<p>The obtained models are then tested on unseen data:</p>
-
-<pre><code>$ java -jar gpfunction.jar -test path_to_banknoteTest
-</code></pre>
-
-<p>We report the results for the model presenting the higher Area under the ROC curve with respect to the validation set:</p>
-
-<pre><code>
-GP FUNCTION: (- (- (- (exp (exp (- (sin X1) (exp (- X3 (- (- (- (exp X4) X1) X1) (- (- (exp (- (sin X1) (exp X3))) X1) X1))))))) X1) (+ X3 X2)) X1)
-ACCURACY: 0.9892703862660944
-PRECISION: 0.9731182795698925
-RECALL: 1.0
-F-SCORE: 0.9863760217983651
-FALSE POSITIVE RATE: 0.017543859649122806
-FALSE NEGATIVE RATE: 0.0
-</code></pre>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="step-3-obtain-the-predictions" class="anchor" href="#step-3-obtain-the-predictions"><span class="octicon octicon-link"></span></a>Step 3: obtain the predictions</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>The GPFunction learner produces several models. Let is pick the model called mostAccurate.txt and generate predictions for the same split split_02.csv.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<pre><code>$ java -jar gpfunction.jar -predict split_02.csv -model mostAccurate.txt -o predictions.csv
+</code></pre> 
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>The executable gpfunction.jar will generate a csv file named predictions.csv containing one label per line.</p>
 
 <h3>
 <a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
-<p>Having with the adaptation of your learner? Check out the provided examples and feel free to contact us at <a href="mailto:iarnaldo@mit.edu">email</a> and we’ll try to help you sort it out.</p>
+<p>Having with the adaptation of your learner? Feel free to contact us by email at <a href="mailto:iarnaldo@mit.edu">iarnaldo@mit.edu</a> and we’ll try to help you sort it out.</p>
 
 <h3>
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<p>This competition is organized by the Any-Scale Learning for All (ALFA) group at MIT.
-<img src="images/ALFA-logo-lousy.png" alt="ALFA"><img src="images/mit-logo.png" alt="MIT"></p>
+<p>This competition is organized by the <a href="http://groups.csail.mit.edu/EVO-DesignOpt/groupWebSite/">Any-Scale Learning For All (ALFA)</a> group at MIT.
+<img src="images/ALFA-logo-lousy.png" alt="ALFA"></p>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/flexgp">flexgp</a></p>
