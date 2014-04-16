@@ -48,7 +48,7 @@
 
 <p><img src="images/f3.png" alt="FCUBE"></p>
 
-<p>For this competition, our goal is to unite the developers of interesting EC classifier algorithms. We seek an experienced informed discussion on the various approaches and techniques without being distracted by one problem at hand. Therefore, we have set up the following format:</p>
+<p>For this competition, our goal is to unite the developers of interesting EC classifier algorithms to solve publicly available problems. We seek an experienced informed discussion on the various approaches and techniques without being distracted by one problem at hand. Therefore, we have set up the following format:</p>
 
 <ul>
 <li>Everyone gets the same computational budget in Amazon EC2</li>
@@ -69,7 +69,7 @@
 <h2>
 <a name="phase-1-bring-your-own-learner" class="anchor" href="#phase-1-bring-your-own-learner"><span class="octicon octicon-link"></span></a>Phase 1: Bring Your Own Learner</h2>
 
-<p>In a first step, participants will need to adapt their learners to be compliant with the two following interfaces:</p>
+<p>In a first step, you will adapt your learner to be compliant with FCUBE's interface; we provide an example with one of our learners together with a dataset you can use to debug yours:</p>
 
 <h3>
 <a name="learner-training-interface" class="anchor" href="#learner-training-interface"><span class="octicon octicon-link"></span></a>Learner Training interface</h3>
@@ -80,15 +80,20 @@
 <a name="inputs" class="anchor" href="#inputs"><span class="octicon octicon-link"></span></a>Inputs:</h4>
 
 <ol>
-<li>a path to a CSV file</li>
+<li>a path to a CSV file: we support csv files with and without headers. Check this dummy dataset with headers and without and this split of the Higgs dataset with headers and without.</li>
 <li>learning time deadline</li>
-<li>Properties File with Java syntax (for your extra parameters)</li>
+<li>Properties File with Java syntax for your extra parameters. Check this example.</li>
 </ol><h4>
 <a name="outputs" class="anchor" href="#outputs"><span class="octicon octicon-link"></span></a>Outputs:</h4>
 
 <ol>
 <li>a model stored in a single file on disk</li>
-</ol><h3>
+</ol><p>Example with our GPFunction learner:</p>
+
+<pre><code>$ java -jar gpfunction.jar -train split_02.csv -minutes 10 -properties params.properties
+</code></pre>
+
+<h3>
 <a name="learner-predict-interface" class="anchor" href="#learner-predict-interface"><span class="octicon octicon-link"></span></a>Learner Predict interface</h3>
 
 <p><img src="images/learnerbbpredict.png" alt="Predict Interface"></p>
@@ -105,7 +110,14 @@
 
 <ol>
 <li>predictions in CSV file (one label per line)</li>
-</ol><h3>
+</ol><p>Example: the GPFunction learner produces several models. Let is pick the model called mostAccurate.txt and generate predictions for the same split split_02.csv.</p>
+
+<pre><code>$ java -jar gpfunction.jar -predict split_02.csv -model mostAccurate.txt -o predictions.csv
+</code></pre> 
+
+<p>The executable gpfunction.jar will generate a csv file named predictions.csv containing one label per line.</p>
+
+<h3>
 <a name="the-data-format" class="anchor" href="#the-data-format"><span class="octicon octicon-link"></span></a>The data format</h3>
 
 <p>In this edition of the workshop, we will target binary classification problems. Algorithms submitted to the competition must read data in CSV format where the last column contains the label (0 or 1). For ease of use, we support two csv formats:</p>
