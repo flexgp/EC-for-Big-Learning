@@ -48,7 +48,7 @@
 
 <p><img src="images/f3.png" alt="FCUBE"></p>
 
-<p>For this competition, our goal is to unite the developers of interesting EC classifier algorithms to solve publicly available problems. We seek an experienced informed discussion on the various approaches and techniques without being distracted by one problem at hand. Therefore, we have set up the following format:</p>
+<p>For this competition, our goal is to unite the developers of interesting EC classifier algorithms to solve relevant problems of public domain. We seek an experienced informed discussion on the various approaches and techniques without being distracted by one problem at hand. Therefore, we have set up the following format:</p>
 
 <ul>
 <li>Everyone gets the same computational budget in Amazon EC2</li>
@@ -126,11 +126,7 @@
 <li>EC2 flavor, i.e the virtual machine specs (check EC2 Instance Type Details <a href="https://aws.amazon.com/ec2/instance-types/">here</a>)</li>
 <li>running time per instance</li>
 <li>number of instances</li>
-</ol><p>Participants will also need to decide a set of parameters concerning the data-parallel strategy:</p>
-
-<ol>
-<li>% of data sampled per instance</li>
-<li>% of variables/features sampled per instance </li>
+<li>data-parallel strategy (% of data and % of variables/features sampled per instance)</li>
 </ol><p>In the last step prior to deployment, participants will have the option to expose a range of possible choices for their learner-specific parameters. This way, it will possible to assign different parameters to the different instances running on the cloud. More details to come on this aspect.</p>
 
 <p>Finally, we will deploy your learners in EC2. We will analyze the predictions of your learner and communicate performance metrics.</p>
@@ -138,18 +134,20 @@
 <h1>
 <a name="the-datasets" class="anchor" href="#the-datasets"><span class="octicon octicon-link"></span></a>The datasets:</h1>
 
-<p>In this edition of the workshop, we will target binary classification problems. Algorithms submitted to the competition must read data in CSV format where the last column contains the label (0 or 1). For each dataset, we will release samples of different sizes. These samples will allow to estimate the running time of the classifier learning algorithms given the size of the data.</p>
+<p>In this edition of the workshop, we will target binary classification problems. For each dataset, we will release samples of different sizes. These samples will allow to estimate the running time of the classifier learning algorithms given the size of the data.</p>
 
-<h3>
-<a name="higgs-dataset" class="anchor" href="#higgs-dataset"><span class="octicon octicon-link"></span></a>Higgs dataset:</h3>
+<h2>
+<a name="higgs-dataset-the-higgs-dataset-is-a-public-dataset-it-is-composed-of-11000000-exemplars-and-28-real-valued-features-expect-a-csv-file-with-any-number-of-features-where-the-last-column-is-the-label-0-or-1" class="anchor" href="#higgs-dataset-the-higgs-dataset-is-a-public-dataset-it-is-composed-of-11000000-exemplars-and-28-real-valued-features-expect-a-csv-file-with-any-number-of-features-where-the-last-column-is-the-label-0-or-1"><span class="octicon octicon-link"></span></a>Higgs dataset: The Higgs dataset is a public dataset. It is composed of 11000000 exemplars and 28 real-valued features. Expect a CSV file with any number of features where the last column is the label (0 or 1).</h2>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>Please remain connected for updates on the datasets.</p>
+
+<h1>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h1>
 
 <p>Having with the adaptation of your learner? Feel free to contact us by email at <a href="mailto:iarnaldo@mit.edu">iarnaldo@mit.edu</a> and we’ll try to help you sort it out.</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<h1>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h1>
 
 <p>This competition is organized by the <a href="http://groups.csail.mit.edu/EVO-DesignOpt/groupWebSite/">Any-Scale Learning For All (ALFA)</a> group at MIT.
 <img src="images/ALFA-logo-lousy.png" alt="ALFA"></p>
