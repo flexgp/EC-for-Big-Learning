@@ -69,7 +69,7 @@
 <h2>
 <a name="phase-1-bring-your-own-learner" class="anchor" href="#phase-1-bring-your-own-learner"><span class="octicon octicon-link"></span></a>Phase 1: Bring Your Own Learner</h2>
 
-<p>In a first step, you will adapt your learner to be compliant with FCUBE's interface; we provide an example with one of our learners together with a dataset you can use to debug yours:</p>
+<p>In a first step, you will adapt your learner to be compliant with FCUBE's interface; we provide an example with <a href="gpfunction.jar" target="_blank">GPFunction</a> (one of our Java learners) together with a dataset you can use to debug yours:</p>
 
 <h3>
 <a name="learner-training-interface" class="anchor" href="#learner-training-interface"><span class="octicon octicon-link"></span></a>Learner Training interface</h3>
@@ -80,17 +80,17 @@
 <a name="inputs" class="anchor" href="#inputs"><span class="octicon octicon-link"></span></a>Inputs:</h4>
 
 <ol>
-<li>a path to a CSV file: we support csv files with and without headers. When headers are included, the first line of the file contains the name and type of the features (integer, float, or nominal). Check this dummy dataset with headers and without and this split of the Higgs dataset with headers and without.</li>
+<li>a path to a CSV file: we support csv files with and without headers. When headers are included, the first line of the file contains the name and type of the features (integer, float, or nominal). Check this dummy dataset <a href="dummy_headers.csv" target="_blank">with headers</a> and <a href="dummy_noheaders.csv" target="_blank">without headers</a> and this split of the Higgs dataset <a href="higgs_header_02.csv" target="_blank">with headers</a> and <a href="higgs_noheader_02.csv" target="_blank">without headers</a>.</li>
 <li>learning time deadline</li>
-<li>Properties File with Java syntax for your extra parameters. Check this <a href="parameters.properties" target="_blank">example</a>example.</li>
+<li>Properties File with Java syntax for your extra parameters. Check this <a href="parameters.properties" target="_blank">example</a>.</li>
 </ol><h4>
 <a name="outputs" class="anchor" href="#outputs"><span class="octicon octicon-link"></span></a>Outputs:</h4>
 
 <ol>
 <li>a model stored in a single file on disk</li>
-</ol><p>Example with our GPFunction learner:</p>
+</ol><p>Example with our <a href="gpfunction.jar" target="_blank">GPFunction</a> learner:</p>
 
-<pre><code>$ java -jar gpfunction.jar -train split_02.csv -minutes 10 -properties params.properties
+<pre><code>$ java -jar gpfunction.jar -train higgs_noheader_02.csv -minutes 10 -properties params.properties
 </code></pre>
 
 <h3>
@@ -110,9 +110,9 @@
 
 <ol>
 <li>predictions in CSV file (one label per line)</li>
-</ol><p>Example: the GPFunction learner produces several models. Let is pick the model called mostAccurate.txt and generate predictions for the same split split_02.csv.</p>
+</ol><p>Example: the GPFunction learner produces several models. Let is pick the model called mostAccurate.txt and generate predictions for the same split higgs_noheader_02.csv.</p>
 
-<pre><code>$ java -jar gpfunction.jar -predict split_02.csv -model mostAccurate.txt -o predictions.csv
+<pre><code>$ java -jar gpfunction.jar -predict higgs_noheader_02.csv -model mostAccurate.txt -o predictions.csv
 </code></pre> 
 
 <p>The executable gpfunction.jar will generate a csv file named predictions.csv containing one label per line.</p>
